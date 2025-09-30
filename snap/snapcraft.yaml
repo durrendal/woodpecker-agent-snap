@@ -1,0 +1,65 @@
+title: 'woodpecker agent'
+license: MIT
+source-code:
+  - https://github.com/woodpecker-ci/woodpecker
+issues:
+  - https://github.com/durrendal/woodpecker-agent-snap
+website:
+  - https://developers.woodpecker.co/docs
+contact:
+  - durrendal@lambdacreate.com
+name: woodpecker-agent
+base: core24
+version: '3.10.0'
+summary: Woodpecker CI/CD agent component
+description: |
+  Woodpecker is a simple, yet powerful CI/CD engine with great extensibility.
+  This is the agent component that executes pipeline steps on behalf of the server.
+  
+  The agent connects to a Woodpecker server and executes pipeline tasks in
+  Docker containers. Multiple agents can connect to a single server for
+  distributed builds.
+  
+  Configuration:
+  - Set WOODPECKER_SERVER to point to your Woodpecker server
+  - Set WOODPECKER_AGENT_SECRET to match your server's agent secret
+  - Agent requires access to Docker to execute pipelines
+  
+  See https://woodpecker-ci.org/docs for setup instructions.
+
+grade: stable
+confinement: strict
+
+apps:
+  woodpecker-agent:
+    command: bin/woodpecker-agent
+    daemon: simple
+    restart-condition: always
+    plugs:
+      - docker
+      - network
+      - network-bind
+    environment:
+      WOODPECKER_BACKEND: docker
+
+plugs:
+  docker:
+    interface: docker
+
+parts:
+  woodpecker-agent:
+    plugin: go
+    source: https://github.com/woodpecker-ci/woodpecker.git
+    source-tag: $SNAPCRAFT_PROJECT_VERSION
+    build-snaps:
+      - go/latest/stable
+    build-packages:
+      - make
+    override-build: |
+      # Build the agent binary
+      make build-agent
+      
+      # Install to snap
+      install -D -m755 dist/woodpecker-agent $SNAPCRAFT_PART_INSTALL/bin/woodpecker-agent
+    stage-packages:
+      - ca-certificates
