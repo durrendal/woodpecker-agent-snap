@@ -26,6 +26,8 @@ description: |
   - Agent requires access to Docker to execute pipelines
   
   See https://woodpecker-ci.org/docs for setup instructions.
+  
+  <a href="https://www.flaticon.com/free-icons/woodpecker" title="woodpecker icons">Woodpecker icons created by Georgiana_Lavinia - Flaticon</a>
 
 grade: stable
 confinement: strict
