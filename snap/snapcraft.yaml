@@ -27,22 +27,21 @@ description: |
   
   See https://woodpecker-ci.org/docs for setup instructions.
   
-  <a href="https://www.flaticon.com/free-icons/woodpecker" title="woodpecker icons">Woodpecker icons created by Georgiana_Lavinia - Flaticon</a>
+  [Woodpecker icons created by Georgiana_Lavinia - Flaticon](https://www.flaticon.com/free-icons/woodpecker)
+
 
 grade: stable
 confinement: strict
 
 apps:
   woodpecker-agent:
-    command: bin/woodpecker-agent
+    command: bin/woodpecker-agent -c $SNAP_COMMON/config/agent.conf
     daemon: simple
     restart-condition: always
     plugs:
       - docker
       - network
       - network-bind
-    environment:
-      WOODPECKER_BACKEND: docker
 
 plugs:
   docker:
