@@ -10,7 +10,7 @@ contact:
   - durrendal@lambdacreate.com
 name: woodpecker-agent
 base: core24
-version: v3.13.0
+version: v3.13.3
 summary: Woodpecker CI/CD agent component
 description: |
   Woodpecker is a simple, yet powerful CI/CD engine with great extensibility.
