@@ -1,15 +1,15 @@
 title: 'Woodpecker CI/CD Agent'
-license: MIT
+license: apache2
 source-code:
   - https://github.com/woodpecker-ci/woodpecker
 issues:
   - https://github.com/durrendal/woodpecker-agent-snap
 website:
-  - https://developers.woodpecker.co/docs
+  - https://woodpecker-ci.org/
 contact:
   - durrendal@lambdacreate.com
 name: woodpecker-agent
-base: core24
+base: core26
 version: v3.16.0
 summary: Woodpecker CI/CD agent component
 description: |
@@ -26,9 +26,6 @@ description: |
   - Agent requires access to Docker to execute pipelines
   
   See https://woodpecker-ci.org/docs for setup instructions.
-  
-  [Woodpecker icons created by Georgiana_Lavinia - Flaticon](https://www.flaticon.com/free-icons/woodpecker)
-
 
 grade: stable
 confinement: strict
